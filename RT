@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IAIEstate - AI Real Estate Investment</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        header {
+            background: #0044cc;
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+        }
+
+        header p {
+            font-size: 1.2em;
+        }
+
+        .btn-main {
+            background-color: #00c5cc;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-size: 1em;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-main:hover {
+            background-color: #008c8c;
+        }
+
+        section {
+            padding: 40px 0;
+            background-color: #fff;
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        input[type="text"], input[type="number"], select {
+            width: 100%;
+            padding: 10px;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        button[type="submit"] {
+            background-color: #0044cc;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            border-radius: 5px;
+            width: 100%;
+            border: none;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0033bb;
+        }
+
+        #property-results {
+            background-color: #f9f9f9;
+            padding: 40px 0;
+        }
+
+        .property-result {
+            background: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main Landing Section -->
+    <header id="main-header">
+        <div class="container">
+            <h1>Welcome to IAIEstate</h1>
+            <p>Your AI-Powered Real Estate Investment Assistant</p>
+            <a href="#investment-form" class="btn-main">Start Investing</a>
+        </div>
+    </header>
+
+    <!-- Investment Form Section -->
+    <section id="investment-form">
+        <div class="container">
+            <h2>Start Your Investment Journey</h2>
+            <p>Let AI help you find the best real estate investments. Answer a few questions, and we'll provide tailored property recommendations with estimated ROI.</p>
+            <form id="investment-questions">
+                <!-- Investment Type -->
+                <label for="investment-type">Investment Type</label>
+                <select id="investment-type">
+                    <option value="long-term">Long-Term (Rental)</option>
+                    <option value="short-term">Short-Term (Flip)</option>
+                </select>
+
+                <!-- Location -->
+                <label for="location">Where are you looking to invest?</label>
+                <input type="text" id="location" placeholder="City, State or 'Anywhere'">
+
+                <!-- Investment Amount -->
+                <label for="investment-amount">What is your investment budget?</label>
+                <input type="number" id="investment-amount" placeholder="Amount in USD">
+
+                <!-- Down Payment Option -->
+                <label for="down-payment">Are you able to put down less than 20%?</label>
+                <div>
+                    <input type="radio" id="down-payment-yes" name="down-payment" value="yes">
+                    <label for="down-payment-yes">Yes</label>
+                    <input type="radio" id="down-payment-no" name="down-payment" value="no" checked>
+                    <label for="down-payment-no">No</label>
+                </div>
+
+                <button type="submit" class="btn-main">Get Property Recommendations</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Property Results Section -->
+    <section id="property-results">
+        <div class="container">
+            <h2>Property Recommendations</h2>
+            <p>Your tailored investment properties will appear here based on your selections.</p>
+            <!-- Results will be displayed dynamically here -->
+            <div id="results-container">
+                <!-- Example of a result -->
+                <div class="property-result">
+                    <h3>Property 1: 3 Bedroom House in Portland, OR</h3>
+                    <p>Price: $450,000 | Estimated ROI: 8% annually | Estimated Rent: $3,000/month</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 IAIEstate. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('investment-questions').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Get the form values
+            const investmentType = document.getElementById('investment-type').value;
+            const location = document.getElementById('location').value;
+            const investmentAmount = parseFloat(document.getElementById('investment-amount').value);
+            const downPayment = document.querySelector('input[name="down-payment"]:checked').value;
+
+            // Example logic to calculate ROI (in the future, integrate real data from APIs)
+            let estimatedROI = 0;
+            let estimatedRent = 0;
+            let estimatedPrice = 0;
+
+            if (investmentType === 'long-term') {
+                estimatedROI = 8; // Example ROI for long-term
+                estimatedRent = investmentAmount * 0.07; // 7% annual rent estimate
+                estimatedPrice = investmentAmount / 0.2; // Assuming 20% down payment
+            } else if (investmentType === 'short-term') {
+                estimatedROI = 12; // Example ROI for short-term (flipping)
+                estimatedRent = 0; // No rent in short-term, only flipping
+                estimatedPrice = investmentAmount / 0.3; // Assuming 30% down payment for flips
+            }
+
+            // Show the result dynamically
+            const resultHTML = `
+                <div class="property-result">
+                    <h3>Property Recommendation</h3>
+                    <p>Location: ${location}</p>
+                    <p>Investment Type: ${investmentType === 'long-term' ? 'Rental (Long-Term)' : 'Flip (Short-Term)'}</p>
+                    <p>Estimated Property Price: $${estimatedPrice.toFixed(2)}</p>
+                    <p>Estimated Rent: $${estimatedRent.toFixed(2)}/month</p>
+                    <p>Estimated ROI: ${estimatedROI}% annually</p>
+                </div>
+            `;
+
+            document.getElementById('results-container').innerHTML = resultHTML;
+        });
+    </script>
+</body>
+</html>
