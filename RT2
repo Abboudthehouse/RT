@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI-powered Real Estate Investment Platform">
+    <meta name="author" content="IAIEstate">
+    <title>IAIEstate - AI Real Estate Investment</title>
+    <style>
+        /* Basic styling for the page */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .question-box {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+        .question-box select, .question-box input {
+            padding: 10px;
+            margin-top: 5px;
+            font-size: 1em;
+        }
+        .btn {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2em;
+        }
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        .results {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            background: #ecf0f1;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Welcome to IAIEstate</h1>
+        <p>AI-powered Real Estate Investment Solutions</p>
+    </header>
+
+    <div class="container">
+        <h2>Start Your Investment Journey</h2>
+        <p>Answer a few questions, and we'll help you find the best investment properties tailored to your needs.</p>
+
+        <!-- Investment Type Question -->
+        <div class="question-box">
+            <label for="investment-type">What type of investment are you interested in?</label>
+            <select id="investment-type">
+                <option value="long-term">Long-Term (Rental)</option>
+                <option value="short-term">Short-Term (Flip)</option>
+            </select>
+        </div>
+
+        <!-- Location Question -->
+        <div class="question-box">
+            <label for="location">Where would you like to invest?</label>
+            <select id="location">
+                <option value="anywhere">Anywhere</option>
+                <option value="state">By State</option>
+            </select>
+        </div>
+
+        <!-- Investment Amount Question -->
+        <div class="question-box">
+            <label for="investment-amount">What is your investment amount?</label>
+            <input type="number" id="investment-amount" placeholder="Enter amount in $">
+        </div>
+
+        <!-- Down Payment Question -->
+        <div class="question-box">
+            <label for="down-payment">Are you able to put down 20% or more?</label>
+            <select id="down-payment">
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+        </div>
+
+        <!-- Submit Button -->
+        <button class="btn" onclick="calculateInvestment()">Submit</button>
+
+        <!-- Results Section -->
+        <div class="results" id="results">
+            <h3>Investment Recommendations</h3>
+            <div id="property-list">
+                <!-- Property results will be displayed here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function calculateInvestment() {
+            // Get input values
+            const investmentType = document.getElementById('investment-type').value;
+            const location = document.getElementById('location').value;
+            const investmentAmount = parseInt(document.getElementById('investment-amount').value);
+            const downPayment = document.getElementById('down-payment').value;
+
+            // Validate the input values
+            if (isNaN(investmentAmount) || investmentAmount <= 0) {
+                alert('Please enter a valid investment amount.');
+                return;
+            }
+
+            // Display dummy data as the AI logic isn't integrated yet
+            let resultsText = '';
+            if (investmentType === 'long-term') {
+                resultsText = `Based on your investment amount of $${investmentAmount}, we recommend looking for rental properties with a good ROI.`;
+            } else {
+                resultsText = `Based on your investment amount of $${investmentAmount}, we suggest looking at properties for flipping.`;
+            }
+
+            // Show the results section
+            const resultsSection = document.getElementById('results');
+            const propertyList = document.getElementById('property-list');
+            propertyList.innerHTML = `<p>${resultsText}</p>`;
+
+            // Toggle visibility of the results
+            resultsSection.style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>
